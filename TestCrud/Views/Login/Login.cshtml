@@ -1,0 +1,29 @@
+﻿@model TestCrud.Models.Request.LoginRequest
+
+@using (Html.BeginForm("Login"))
+{
+    @Html.ValidationSummary(true)
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Usuario)
+                @Html.TextBoxFor(model => model.Usuario, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Usuario)
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password)
+                @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Password)
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+
+            <button class="btn btn-primary">Iniciar sesion</button>
+        </div>
+    </div>
+    <span style="color:red;">@ViewBag.errormessage</span>
+}

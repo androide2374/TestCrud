@@ -1,0 +1,53 @@
+﻿@model Usuario
+
+@if (ViewBag.Success != null)
+{
+    <span style="color:green;"> @ViewBag.Success</span>
+    <a class="btn btn-outline-success" asp-area="" asp-controller="UsuarioCrud" asp-action="Index">Volver al listado de usuarios</a>
+}
+else
+{
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(m => m.Password)
+        @Html.HiddenFor(m => m.FechaAlta)
+        @Html.HiddenFor(m => m.Activo)
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Username)
+                    @Html.TextBoxFor(model => model.Username, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Username)
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Nombre)
+                    @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Nombre)
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Apellido)
+                    @Html.TextBoxFor(model => model.Apellido, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Apellido)
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.IdRol)
+                    @Html.DropDownList("IdRol", new SelectList(ViewBag.Roles, "Id", "Descripcion"), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.IdRol)
+                </div>
+            </div>
+            <div class="col-md-12">
+                <button class="btn btn-primary">Actualizar</button>
+            </div>
+            <span style="color:red;">@ViewBag.errormessage</span>
+        </div>
+    }
+
+}
+

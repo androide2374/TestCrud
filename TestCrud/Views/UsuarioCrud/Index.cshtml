@@ -1,0 +1,39 @@
+﻿@model List<Usuario>
+@{
+    ViewData["Title"] = "Listado de usuarios";
+}
+
+@Html.ActionLink("Nuevo usuario", "Create", "UsuarioCrud",null, new { @class="btn btn-primary" })
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Usuario</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Rol</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var usuario in Model)
+        {
+        <tr>
+            <th scope="row">@usuario.Username</th>
+            <td>@usuario.Nombre</td>
+            <td>@usuario.Apellido</td>
+            @if (usuario.Activo)
+            {
+                <td>Si</td>
+            }
+            else
+            {
+                <td>No</td>
+            }
+            <td>@usuario.IdRolNavigation.Descripcion</td>
+            <td>@Html.ActionLink("Editar", "Edit","UsuarioCrud", new { id = usuario.Id }) </td>
+        </tr>
+
+        }
+    </tbody>
+</table>
